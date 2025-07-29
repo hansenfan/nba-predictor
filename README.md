@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # NBA Predictor & Trade Simulator
 
 A comprehensive NBA game prediction and trade simulation platform built with PyTorch and Java Spring Boot.
@@ -178,3 +179,6 @@ MIT License - see LICENSE file for details
 ## 🆘 Support
 
 For questions and support, please open an issue on GitHub or contact the development team.
+=======
+# nba-predictor
+>>>>>>> 9c1d7dd94de24b13cd8c3f89b4ce38d54f82255a
