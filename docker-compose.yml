@@ -1,0 +1,111 @@
+version: "3.8"
+
+services:
+  # Database
+  postgres:
+    image: postgres:14-alpine
+    container_name: nba-predictor-postgres
+    environment:
+      POSTGRES_DB: nba_predictor
+      POSTGRES_USER: nba_user
+      POSTGRES_PASSWORD: nba_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init:/docker-entrypoint-initdb.d
+    networks:
+      - nba-network
+
+  # Redis for caching
+  redis:
+    image: redis:7-alpine
+    container_name: nba-predictor-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - nba-network
+
+  # Spring Boot API
+  api-backend:
+    build:
+      context: ./api-backend
+      dockerfile: Dockerfile
+    container_name: nba-predictor-api
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/nba_predictor
+      SPRING_DATASOURCE_USERNAME: nba_user
+      SPRING_DATASOURCE_PASSWORD: nba_password
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - nba-network
+    volumes:
+      - ./api-backend/logs:/app/logs
+
+  # ML Backend
+  ml-backend:
+    build:
+      context: ./ml-backend
+      dockerfile: Dockerfile
+    container_name: nba-predictor-ml
+    environment:
+      DATABASE_URL: postgresql://nba_user:nba_password@postgres:5432/nba_predictor
+      REDIS_URL: redis://redis:6379
+    volumes:
+      - ./ml-backend/models:/app/models
+      - ./ml-backend/data:/app/data
+      - ./ml-backend/logs:/app/logs
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - nba-network
+
+  # Data Pipeline
+  data-pipeline:
+    build:
+      context: ./data-pipeline
+      dockerfile: Dockerfile
+    container_name: nba-predictor-pipeline
+    environment:
+      DATABASE_URL: postgresql://nba_user:nba_password@postgres:5432/nba_predictor
+      NBA_API_KEY: ${NBA_API_KEY}
+    volumes:
+      - ./data-pipeline/data:/app/data
+      - ./data-pipeline/logs:/app/logs
+    depends_on:
+      - postgres
+    networks:
+      - nba-network
+
+  # Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: nba-predictor-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8080/api/v1
+    depends_on:
+      - api-backend
+    networks:
+      - nba-network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  nba-network:
+    driver: bridge

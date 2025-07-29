@@ -1,0 +1,6 @@
+NBA Game Data Summary
+====================
+Total games: 15605
+Date range: 2010-01-01 00:00:00 to 2023-06-12 00:00:00
+Seasons: 14
+Teams: 30
