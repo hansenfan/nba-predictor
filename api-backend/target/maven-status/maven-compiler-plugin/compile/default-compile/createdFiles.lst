@@ -1,0 +1,8 @@
+com/nbapredictor/service/PredictionService.class
+com/nbapredictor/service/PredictionService$MLPredictionResponse.class
+com/nbapredictor/controller/PredictionController.class
+com/nbapredictor/model/GameRequest.class
+com/nbapredictor/config/WebClientConfig.class
+com/nbapredictor/model/PredictionResponse.class
+com/nbapredictor/service/PredictionService$MLGameRequest.class
+com/nbapredictor/NBAPredictorApplication.class

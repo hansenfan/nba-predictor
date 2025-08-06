@@ -1,0 +1,6 @@
+/Users/hansenfan/Desktop/Projects/nba-predictor/api-backend/src/main/java/com/nbapredictor/model/GameRequest.java
+/Users/hansenfan/Desktop/Projects/nba-predictor/api-backend/src/main/java/com/nbapredictor/config/WebClientConfig.java
+/Users/hansenfan/Desktop/Projects/nba-predictor/api-backend/src/main/java/com/nbapredictor/service/PredictionService.java
+/Users/hansenfan/Desktop/Projects/nba-predictor/api-backend/src/main/java/com/nbapredictor/NBAPredictorApplication.java
+/Users/hansenfan/Desktop/Projects/nba-predictor/api-backend/src/main/java/com/nbapredictor/model/PredictionResponse.java
+/Users/hansenfan/Desktop/Projects/nba-predictor/api-backend/src/main/java/com/nbapredictor/controller/PredictionController.java
