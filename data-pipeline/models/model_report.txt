@@ -1,0 +1,73 @@
+NBA Game Prediction Model Report
+================================
+
+Random Forest:
+  Accuracy: 0.896
+  Cross-validation: 0.903 (+/- 0.012)
+  Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.88      0.87      0.87      1209
+           1       0.91      0.91      0.91      1691
+
+    accuracy                           0.90      2900
+   macro avg       0.89      0.89      0.89      2900
+weighted avg       0.90      0.90      0.90      2900
+
+  Top 10 Features:
+    efficiency_diff: 0.1816
+    fg_pct_diff: 0.1572
+    fg3_pct_diff: 0.0826
+    reb_diff: 0.0635
+    season_win_rate_diff: 0.0621
+    ast_diff: 0.0564
+    away_efficiency: 0.0514
+    home_efficiency: 0.0479
+    tov_diff: 0.0448
+    stl_diff: 0.0321
+
+==================================================
+
+Gradient Boosting:
+  Accuracy: 0.919
+  Cross-validation: 0.921 (+/- 0.014)
+  Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.91      0.90      0.90      1209
+           1       0.93      0.93      0.93      1691
+
+    accuracy                           0.92      2900
+   macro avg       0.92      0.92      0.92      2900
+weighted avg       0.92      0.92      0.92      2900
+
+  Top 10 Features:
+    efficiency_diff: 0.3832
+    fg_pct_diff: 0.2632
+    tov_diff: 0.1174
+    reb_diff: 0.0926
+    season_win_rate_diff: 0.0654
+    fg3_pct_diff: 0.0504
+    ast_diff: 0.0145
+    stl_diff: 0.0070
+    home_efficiency: 0.0012
+    season_ppg_diff: 0.0011
+
+==================================================
+
+Logistic Regression:
+  Accuracy: 0.912
+  Cross-validation: 0.918 (+/- 0.008)
+  Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.89      0.89      0.89      1209
+           1       0.92      0.92      0.92      1691
+
+    accuracy                           0.91      2900
+   macro avg       0.91      0.91      0.91      2900
+weighted avg       0.91      0.91      0.91      2900
+
+
+==================================================
+
